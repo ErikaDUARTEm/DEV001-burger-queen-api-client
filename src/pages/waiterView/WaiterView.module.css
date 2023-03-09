@@ -1,9 +1,16 @@
 .container {
-  height: 78vh;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
-.img {
-  width: 120px;
-  height: 120px;
 
-  opacity: 0.2;
+.img {
+  padding: 15px;
+  margin: 20px;
+  width: 120px;
+  height: 80px;
+  opacity: 0.5;
 }

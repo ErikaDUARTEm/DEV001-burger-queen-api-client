@@ -9,3 +9,16 @@
   object-position: center;
   width: 50px;
 }
+.Nav {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+}
+.Img {
+  width: 80px;
+  height: 70px;
+}
+.NameLogo {
+  color: #723a13;
+  font-size: 16px;
+}

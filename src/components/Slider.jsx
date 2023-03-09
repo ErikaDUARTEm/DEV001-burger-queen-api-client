@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../Context/authContext";
 
-
 import Loader from "./Loader/Loader";
-
 
 const Slider = () => {
   const [listProducts, setListProducts] = useState([]);
   const [valueFilter, setValueFilter] = useState("breakfast");
-  const {arrayContext, setArrayContext} = useAuthContext();
-
+  const { arrayContext, setArrayContext } = useAuthContext();
+  const [focus, setFocus] = useState();
 
   useEffect(() => {
     fetch("http://localhost:5000/products")
@@ -25,10 +23,18 @@ const Slider = () => {
   }, [valueFilter]);
 
   const addButtonClick = (is_id_button) => {
+    setFocus("is-active");
+
     const arrayOrderTemp = listProducts.filter((product) => {
       if (product.id_product === is_id_button) return product;
     });
-    setArrayContext(arrayContext.concat(arrayOrderTemp))
+
+    const productNew = arrayOrderTemp.map((item) => ({
+      ...item,
+      qty: 1,
+    }));
+
+    setArrayContext([...arrayContext, productNew].flat());
   };
 
   const handleChange = (value) => {
@@ -42,7 +48,7 @@ const Slider = () => {
           <div className="control is-toggle">
             <button
               onClick={() => handleChange("breakfast")}
-              className="button is-rounded is-large is-primary is-outlined is-focused"
+              className={`button is-rounded is-large is-primary is-outlined  ${focus} `}
             >
               <span className="icon  is-large">
                 <i className="fa-solid fa-mug-saucer"></i>
@@ -53,7 +59,7 @@ const Slider = () => {
           <div className="control is-toggle">
             <button
               onClick={() => handleChange("lunch dinner")}
-              className="button  is-rounded is-large  is-primary is-outlined"
+              className={`button is-rounded is-large is-primary is-outlined  ${focus} `}
             >
               <span className="icon is-large">
                 <i className="fa-solid fa-burger"></i>
@@ -96,7 +102,6 @@ const Slider = () => {
                   <span>add</span>
                 </button>
               </div>
-             
             </section>
           ))
         )}

@@ -5,7 +5,6 @@ import Loader from "../../components/Loader/Loader";
 import style from "./WaiterView.module.css";
 
 const WaiterView = () => {
-  const dateUser = JSON.parse(localStorage.getItem("users"));
   const [arrayTables, setArrayTables] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/tables")
@@ -14,33 +13,38 @@ const WaiterView = () => {
   }, []);
 
   return (
-    <section className={style.container}>
+    <>
       <h1 className="title is-3 has-text-centered pt-4">Tables</h1>
-      <div className="field is-flex  is-flex-wrap-wrap is-justify-content-center  is-align-content-space-evenly">
+      <section className={style.container}>
         {arrayTables.length === 0 ? (
           <Loader />
         ) : (
           arrayTables.map((elem) => (
             <Link
               to="/waiterView/orders"
-              className="box m-6 p-4  has-background-success-light is-flex is-flex-direction-column is-justify-content-center"
+              className="box  is-flex is-flex-direction-column is-justify-content-center"
               key={elem.id_table}
             >
               <span className="field is-flex is-flex-direction-column is-justify-content-center is-align-content-center">
-                <img
-                  className={style.img}
-                  src="https://img.icons8.com/ios-filled/250/restaurant-table.png"
-                />
+                <img className={style.img} src="src/assets/table.png" />
 
-                <span className="title is-2 has-text-centered ">
+                <span className="title is-3 has-text-centered ">
                   N° {elem.number_table}
                 </span>
               </span>
             </Link>
           ))
         )}
-      </div>
-    </section>
+        <Link
+          to="/waiterView/orders"
+          className="box  is-flex is-flex-direction-column is-justify-content-center"
+        >
+          <span className="field is-flex is-flex-direction-column is-justify-content-center is-align-content-center">
+            <span className="title is-3 has-text-centered ">+</span>
+          </span>
+        </Link>
+      </section>
+    </>
   );
 };
 

@@ -107,7 +107,7 @@
       "price_product": 7.0,
       "image_product": "https://github.com/aniapalominoq/DEV001-burger-queen-api-client/blob/order/src/assets/imgMenu/jugo.png?raw=true",
       "type_product": "",
-      "dateEntry_product": "0000-00-00",
+      "dateEntry_product": "2014-02-02",
       "category_product": "breakfast"
     },
     {
@@ -159,6 +159,7 @@
       "id_product": 10,
       "name_product": "Water 750ml",
       "price_product": 7.0,
+
       "image_product": "https://github.com/aniapalominoq/DEV001-burger-queen-api-client/blob/order/src/assets/imgMenu/agua700.png?raw=true",
       "type_product": "drink",
       "dateEntry_product": "2023-02-01",

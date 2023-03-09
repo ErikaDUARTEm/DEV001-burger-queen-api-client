@@ -29,7 +29,7 @@ const Logout = () => {
   return (
     <>
       <Link to={PRIVATE} className="" onClick={setcloset}>
-        <span className="">salir</span>
+        <span className="">Sign off</span>
       </Link>
     </>
   );

@@ -37,9 +37,12 @@ const Login = () => {
       <form className={style.form} onSubmit={handleSubmit}>
         <h1 className="title is-1  has-text-centered">Login</h1>
         <div className="field">
-          <label className="label">Email</label>
+          <label className="label" htmlFor="email">
+            Email
+          </label>
           <p className="control has-icons-left">
             <input
+              id="email"
               className="input is-large"
               type="email"
               placeholder="Email"
@@ -54,10 +57,13 @@ const Login = () => {
           </p>
         </div>
         <div className="field">
-          <label className="label">Password</label>
+          <label className="label" htmlFor="password">
+            Password
+          </label>
           <div className="field has-addons is-flex">
             <div className="control has-icons-left is-flex-grow-3">
               <input
+                id="password"
                 className="input is-large"
                 type={viewPasswd}
                 placeholder="Password"

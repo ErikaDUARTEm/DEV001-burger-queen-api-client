@@ -7,13 +7,16 @@ const Header = () => {
 
   return (
     <header className={style.Header}>
-      <nav className=" navbar has-background-danger is-flex is-align-content-center is-justify-content-space-between  ">
+      <nav className={style.Nav}>
         <div className="icon-text is-flex is-align-content-center is-justify-content-center px-6  ">
-          <span className="icon fa fas-2px  has-text-light">
-            <i className="fa-solid fa-burger fas fa-4x"></i>
-          </span>
-          <span className="icon mx-6">
-            <strong className="has-text-light is-size-4">burger queen</strong>
+          <span className=" is-flex is-flex-direction-column is-justify-content-center  is-align-items-center">
+            <img
+              className={style.Img}
+              src="../src/assets/burger.png"
+              alt="logo burger"
+            />
+
+            <strong className={style.NameLogo}>Burger Queen</strong>
           </span>
         </div>
         {readLocalStorage ? (
@@ -45,7 +48,9 @@ const Header = () => {
               <div className="dropdown-menu" id="dropdown-menu2" role="menu">
                 <div className="dropdown-content">
                   <div className="dropdown-item">
-                    <strong>{<Logout />}</strong>
+                    <hr className="dropdown-divider" />
+                    <a className="dropdown-item">{<Logout />}</a>
+                    <hr className="dropdown-divider" />
                   </div>
                 </div>
               </div>
