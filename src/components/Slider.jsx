@@ -21,24 +21,22 @@ const Slider = () => {
         setListProducts(array);
       });
   }, [valueFilter]);
+  const handleChange = (value) => {
+    setValueFilter(value);
+  };
 
   const addButtonClick = (is_id_button) => {
     setFocus("is-active");
-
-    const arrayOrderTemp = listProducts.filter((product) => {
-      if (product.id_product === is_id_button) return product;
-    });
-
-    const productNew = arrayOrderTemp.map((item) => ({
-      ...item,
-      qty: 1,
-    }));
+    const productNew = listProducts
+      .filter((product) => {
+        if (product.id_product === is_id_button) return product;
+      })
+      .map((item) => ({
+        ...item,
+        qty: 1,
+      }));
 
     setArrayContext([...arrayContext, productNew].flat());
-  };
-
-  const handleChange = (value) => {
-    setValueFilter(value);
   };
 
   return (

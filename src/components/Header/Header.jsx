@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Logout from "../Logout/Logout";
 import style from "./Header.module.css";
 
 const Header = () => {
+  const [focus, setFocus] = useState();
+  const handleClick = () => {
+    setFocus("is-active");
+  };
   const readLocalStorage = JSON.parse(localStorage.getItem("users"));
 
   return (
@@ -33,25 +38,22 @@ const Header = () => {
               </span>
               <span className="tag has-background-warning ">Waiter</span>
             </div>
-            <div className="dropdown is-right  is-active">
+            <div className={`dropdown is-right  ${focus}`}>
               <div className="dropdown-trigger">
                 <button
-                  className="button is-large is-danger"
-                  aria-haspopup="true"
-                  aria-controls="dropdown-menu2"
+                  className="button is-large is-danger mb-2"
+                  onClick={() => handleClick()}
                 >
-                  <span className="icon is-large">
-                    <i className="fas fa-angle-down"></i>
+                  <span class="icon-text ">
+                    <span className="icon has-text-black">
+                      <i className="fa-solid fa-caret-down "></i>
+                    </span>
                   </span>
                 </button>
               </div>
-              <div className="dropdown-menu" id="dropdown-menu2" role="menu">
+              <div className="dropdown-menu" id="dropdown-menu" role="menu">
                 <div className="dropdown-content">
-                  <div className="dropdown-item">
-                    <hr className="dropdown-divider" />
-                    <a className="dropdown-item">{<Logout />}</a>
-                    <hr className="dropdown-divider" />
-                  </div>
+                  <div className="dropdown-item is-hover">{<Logout />}</div>
                 </div>
               </div>
             </div>

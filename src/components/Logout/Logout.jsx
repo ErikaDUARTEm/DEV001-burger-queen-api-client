@@ -21,7 +21,13 @@ const Logout = () => {
         if (result.isConfirmed) {
           localStorage.clear("users");
           location.reload();
-          Swal.fire("Log out!", "Your section has been closed", "success");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "I logged out successfully",
+            showConfirmButton: false,
+            timer: 800,
+          });
         }
       });
     }

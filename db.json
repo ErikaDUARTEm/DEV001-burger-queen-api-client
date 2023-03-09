@@ -94,7 +94,7 @@
     },
     {
       "id_product": 3,
-      "name_product": "Ham&Cheese Sandwich",
+      "name_product": "Ham&Cheese",
       "price_product": 10.0,
       "image_product": "https://github.com/aniapalominoq/DEV001-burger-queen-api-client/blob/main/src/assets/imgMenu/sanwichjamon.png?raw=true",
       "type_product": "",

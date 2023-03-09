@@ -3,11 +3,9 @@ import { useAuthContext } from "../../Context/authContext";
 import Slider from "../../components/Slider";
 import Swal from "sweetalert2";
 
-//import Table from "../../components/Table";
-
 const Orders = () => {
   const { arrayContext, setArrayContext } = useAuthContext();
-  console.log(arrayContext);
+  console.log("******inico******", arrayContext, "*******fin******");
 
   const increaseProduct = (productOrder) => {
     if (arrayContext.find((el) => el.id_product === productOrder.id_product)) {
@@ -66,6 +64,34 @@ const Orders = () => {
     });
   };
 
+  const arraySubTotals = arrayContext.map((el) => el.price_product * el.qty);
+  const total = arraySubTotals.reduce((a, b) => a + b, 0);
+
+  //renderizar valores unicos
+
+  const miCarritoSinDuplicados = arrayContext.reduce(
+    (acumulador, valorActual) => {
+      const elementoYaExiste = acumulador.find(
+        (elemento) => elemento.id_product === valorActual.id_product
+      );
+      if (elementoYaExiste) {
+        return acumulador.map((elemento) => {
+          if (elemento.id_product === valorActual.id_product) {
+            return {
+              ...elemento,
+              qty: elemento.qty + valorActual.qty,
+            };
+          }
+
+          return elemento;
+        });
+      }
+
+      return [...acumulador, valorActual];
+    },
+    []
+  );
+
   return (
     <>
       <Slider />
@@ -76,13 +102,13 @@ const Orders = () => {
           <div className="field mx-4">
             <label className="label">N° Table</label>
             <div className="control ">
-              <input className="input " type="text" value="1" />
+              <input className="input " type="text" defaultValue="" />
             </div>
           </div>
           <div className="field mx-4">
             <label className="label">Client name</label>
             <div className="control has-icons-left">
-              <input className="input " type="text" value="bulma" />
+              <input className="input " type="text" defaultValue="" />
               <span className="icon is-small is-left">
                 <i className="fas fa-user"></i>
               </span>
@@ -91,9 +117,9 @@ const Orders = () => {
           <div className="field mx-4">
             <label className="label">National Identity Number</label>
             <div className="control has-icons-left ">
-              <input className="input " type="text" value="12345678" />
+              <input className="input " type="text" defaultValue="" />
               <span className="icon is-small is-left">
-                <i class="fa-sharp fa-regular fa-address-card"></i>
+                <i className="fa-sharp fa-regular fa-address-card"></i>
               </span>
             </div>
           </div>
@@ -125,7 +151,7 @@ const Orders = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {arrayContext.map((productOrder, index) => (
+                  {miCarritoSinDuplicados.map((productOrder, index) => (
                     <>
                       <tr key={index}>
                         <th>{index + 1}</th>
@@ -173,7 +199,11 @@ const Orders = () => {
                 </tbody>
               </table>
             </div>
-            <div className="panel-block">
+            <div className="panel-block is-justify-content-space-evenly is-align-items-center">
+              <span className="title is-size-4 mt-4">Total amount</span>
+              <span className="is-size-4"> {` $ ${total}.00`}</span>
+            </div>
+            <div className="panel-block is-flex ">
               <button className="button is-primary is-normal is-outlined is-fullwidth">
                 Send order
               </button>
